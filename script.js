@@ -3,7 +3,25 @@
 //   });
 
 // Hides recipe results until user clicks submit 
-  $("section").hide();
+  function hide(){
+    $("section").hide();
+  };
+  hide();
+
+  // cuisine type value
+
+  $("li").on("click", function(){
+    
+    var userCuisineType = $(this).text();
+    var dropDownarrow = $("<i>" + "expand_more" + "</i>").addClass("material-icons right");
+    $(".dropdown-button")
+    .text(userCuisineType)
+    .append(dropDownarrow);
+
+  });
+  
+  
+
 
    
   // function below builds URL to retrieve recipe data
