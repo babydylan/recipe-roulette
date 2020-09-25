@@ -1,11 +1,7 @@
 // $(document).ready(function() {
 //     M.updateTextFields();
 //   });
-
-
 $(function () {
-
-
 
   function fetchCuisineRecipe() {
 
@@ -58,6 +54,19 @@ $(function () {
 
   }
 
+
+
+
+$("section").hide();
+
+$("#submitRequest").on("click",function(event){
+
+  event.preventDefault();
+  $("section").fadeIn(1000);
   fetchCuisineRecipe();
  
 });
+
+});
+
+
