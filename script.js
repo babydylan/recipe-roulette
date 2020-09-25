@@ -1,7 +1,8 @@
 // $(document).ready(function() {
 //     M.updateTextFields();
 //   });
-
+// global variable 
+var cuisine = "";
 // Hides recipe results until user clicks submit 
 function hide(){
   $("section").hide();
@@ -21,7 +22,6 @@ $("li").on("click", function(){
 
 });
 
-var cuisine = "";
 
 
  
@@ -101,9 +101,28 @@ $("#submitRequest").on("click",function(event){
 
   event.preventDefault();
   $(".box").empty();
-  $("section").fadeIn(1000);
+  
+  var ingredientInput= $("#ingredient_1").val();
+  console.log(ingredientInput);
+  console.log(cuisine);
+  
+  if(ingredientInput === "" && cuisine ===""){
+    
+    alert("input has been left blank!")
+    
+    return;
+  }else{
+    $("section").fadeIn(1000);
+    fetchCuisineRecipe();
+  }
+  
+  
  
-  fetchCuisineRecipe();
+  
 
 });
+
+
+
+  
 
