@@ -1,13 +1,22 @@
 // $(document).ready(function() {
 //     M.updateTextFields();
 //   });
-$(function () {
+  $("section").hide();
 
+   
+  // var userIngredientInput = userIngredientInput.toLowerCase();
+  
   function fetchCuisineRecipe() {
+    
+    var query= $("#ingredient_1")
+      .val()
+      .toLowerCase()
+      .trim();
 
     var apiKey = "8a9e2ee45fae41ecb210b7de4e23a7b1";
     
-    var spoonacularUrl = "https://api.spoonacular.com/recipes/complexSearch?apiKey=" + apiKey + "&query=beef";
+    var spoonacularUrl = "https://api.spoonacular.com/recipes/complexSearch?apiKey=" + apiKey + "&query=" + query;
+    console.log(spoonacularUrl);
 
     $.ajax({
       url: spoonacularUrl,
@@ -46,27 +55,17 @@ $(function () {
       });
 
 
-
-
-
-
     });
 
-  }
+  };
 
 
 
+  $("#submitRequest").on("click",function(event){
 
-$("section").hide();
-
-$("#submitRequest").on("click",function(event){
-
-  event.preventDefault();
-  $("section").fadeIn(1000);
-  fetchCuisineRecipe();
- 
-});
-
-});
-
+    event.preventDefault();
+    $("section").fadeIn(1000);
+    fetchCuisineRecipe();
+  
+  });
 
