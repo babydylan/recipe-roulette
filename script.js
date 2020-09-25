@@ -34,7 +34,7 @@ function fetchCuisineRecipe() {
     .toLowerCase()
     .trim();
 
-  var apiKey = "8a9e2ee45fae41ecb210b7de4e23a7b1";
+  var apiKey = "ff436b868e184aa8b285a0654110973b";
   
   var spoonacularUrl = "https://api.spoonacular.com/recipes/complexSearch?apiKey=" + apiKey + "&query=" + query + "&cuisine=" + cuisine;
   console.log(spoonacularUrl);
@@ -85,7 +85,7 @@ function fetchCuisineRecipe() {
         method: "GET",
       }).then(function (data) {
         var spoonRecipe = data.spoonacularSourceUrl;
-        window.location.replace(spoonRecipe);
+        window.open(spoonRecipe, "_blank");
       })
 
     });
@@ -117,7 +117,6 @@ $("#submitRequest").on("click",function(event){
   }
   
   
- 
   
 
 });
