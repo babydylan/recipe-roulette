@@ -60,7 +60,9 @@ function fetchCuisineRecipe() {
       // Line 36-42 work with images
       newDisplay.appendTo(newDiv);
       var imgLink = data.results[i].image;
-      var newImg = $("<img>").attr("src", imgLink);
+      var newImg = $("<img>")
+      .attr("src", imgLink);
+      
 
       // each li,h3,and img tag becomes appended to a ul tag where a slider class is used 
       newImg.appendTo(newDisplay);
