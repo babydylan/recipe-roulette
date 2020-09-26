@@ -164,12 +164,13 @@ $("#submitRequest").on("click",function(event){
     alert("input has been left blank!")
     
     return;
-  }else{
+    
+  }else if (cuisine === ""){
     $("section").fadeIn(1000);
     fetchRecipeIngredients();
-    // fetchCuisineRecipe();
-
-  
+    
+  }else {
+    fetchCuisineRecipe();
   }
   
   
