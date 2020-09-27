@@ -129,6 +129,7 @@ function fetchRecipeIngredientsEdamam() {
       var idLink = $("<button>")
       .addClass("btn-small")
       .addClass("caption bottom")
+      .addClass("recipe-url")
       .text("Click Me For Recipe!");
       idLink.attr("url", data.hits[i].recipe.url)
       idLink.appendTo(newDisplay);
@@ -137,7 +138,7 @@ function fetchRecipeIngredientsEdamam() {
     $('.slider').slider();
 
     // Event listener for button located on image which redirects to a new page 
-    $("button").on("click", function(){
+    $(".recipe-url").on("click", function(){
       var sourceUrl = $(this).attr("url");
       window.open(sourceUrl, "_blank");
 
