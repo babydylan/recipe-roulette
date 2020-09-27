@@ -23,6 +23,7 @@ $("li").on("click", function(){
 });
 
 
+
 // function below used to get edamam data
 
 function fetchRecipeIngredients() {
@@ -75,6 +76,8 @@ function fetchRecipeIngredients() {
   
   
 }
+
+
  
 // function below builds URL to retrieve recipe data
 
@@ -86,6 +89,8 @@ function fetchCuisineRecipe() {
     .trim();
 
   var apiKey = "8a9e2ee45fae41ecb210b7de4e23a7b1";
+
+  var apiKey = "ff436b868e184aa8b285a0654110973b";
   
   var spoonacularUrl = "https://api.spoonacular.com/recipes/complexSearch?apiKey=" + apiKey + "&query=" + query + "&cuisine=" + cuisine;
   console.log(spoonacularUrl);
@@ -111,7 +116,11 @@ function fetchCuisineRecipe() {
       // Line 36-42 work with images
       newDisplay.appendTo(newDiv);
       var imgLink = data.results[i].image;
+
       var newImg = $("<img>").attr("src", imgLink);
+
+      var newImg = $("<img>").attr("src", imgLink);
+      
 
       // each li,h3,and img tag becomes appended to a ul tag where a slider class is used 
       newImg.appendTo(newDisplay);
@@ -136,7 +145,11 @@ function fetchCuisineRecipe() {
         method: "GET",
       }).then(function (data) {
         var spoonRecipe = data.spoonacularSourceUrl;
+
         window.location.replace(spoonRecipe);
+
+        window.open(spoonRecipe, "_blank");
+
       })
 
     });
@@ -145,8 +158,6 @@ function fetchCuisineRecipe() {
   });
 
 };
-
-
 
 
 // Event listener on submit button 
@@ -165,17 +176,14 @@ $("#submitRequest").on("click",function(event){
     
     return;
     
-  }else if (cuisine === ""){
+  }else if(cuisine === ""){
     $("section").fadeIn(1000);
     fetchRecipeIngredients();
     
-  }else {
+  }else{
+    $("section").fadeIn(1000);
+
     fetchCuisineRecipe();
   }
   
   
- 
-  
-
-});
-
