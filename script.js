@@ -1,3 +1,4 @@
+
 // global variable 
 var cuisine = "";
 // Hides recipe results until user clicks submit 
@@ -44,8 +45,8 @@ function fetchCuisineRecipeSpoonacular() {
       var title = data.results[i].title;
       var newDisplay = $("<li>");
       var newTitle = $("<h3>")
-        .addClass("caption center-align")
-        .addClass("orange-text accent-3");
+      .addClass("caption center-align")
+      .addClass("recipe-title")
       newTitle.text(title);
       newTitle.appendTo(newDisplay);
       // Line 36-42 work with images
@@ -60,6 +61,7 @@ function fetchCuisineRecipeSpoonacular() {
       var idLink = $("<button>")
       .addClass("btn-small")
       .addClass("caption bottom")
+      .addClass("recipe-url")
       .text("Click Me For Recipe!");
       idLink.attr("id", data.results[i].id)
       idLink.appendTo(newDisplay);
@@ -98,8 +100,7 @@ function fetchRecipeIngredientsEdamam() {
 
   var edamamKey = "b4b2bbb0a27fcae4c6fc433f0d4af07f";
 
-  var edamamUrl = "https://api.edamam.com/search?q=" + userInput + "&app_id=" + edamamID + "&app_key=" + edamamKey;
-  console.log(edamamUrl);
+  var edamamUrl = "https://api.edamam.com/search?q=" + userInput + "&app_id=" + edamamID + "&app_key=" + edamamKey + "&from=4&to=20";
   
   $.ajax({
     url: edamamUrl,
@@ -115,8 +116,8 @@ function fetchRecipeIngredientsEdamam() {
       var title = data.hits[i].recipe.label;
       var newDisplay = $("<li>");
       var newTitle = $("<h3>")
-        .addClass("caption center-align")
-        .addClass("orange-text accent-3");
+      .addClass("caption center-align")
+      .addClass("recipe-title")
       newTitle.text(title);
       newTitle.appendTo(newDisplay);
 
@@ -159,17 +160,16 @@ $("#submitRequest").on("click",function(event){
     
     alert("input has been left blank!")
     return;
-  }else{
+  }else if(cuisine === $("#blank").text()){ 
+    console.log($("#blank").text());
     $("section").fadeIn(1000);
-    // fetchCuisineRecipeSpoonacular();
+    
     fetchRecipeIngredientsEdamam();
 
+  }else{
+    $("section").fadeIn(1000);
+
+    fetchCuisineRecipeSpoonacular(); 
   }
 
 });
-
-
-
-
-  
-
