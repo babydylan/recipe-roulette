@@ -1,2 +1,12 @@
-/* no styles needed at the moment */
+.recipe-title{
+    color: black;
+    font-size: 22px;
+}
+.recipe-url {
+    position:relative;
+    margin-top:250px;
+}
 
+.active {
+    position: relative;
+}
