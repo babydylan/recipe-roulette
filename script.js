@@ -1,6 +1,3 @@
-// $(document).ready(function() {
-//     M.updateTextFields();
-//   });
 // global variable 
 var cuisine = "";
 // Hides recipe results until user clicks submit 
@@ -10,9 +7,7 @@ function hide(){
 hide();
 
 // cuisine type value
-
 $("li").on("click", function(){
-  
   var userCuisineType = $(this).text();
   cuisine = userCuisineType;
   var dropDownarrow = $("<i>" + "expand_more" + "</i>").addClass("material-icons right");
@@ -22,12 +17,8 @@ $("li").on("click", function(){
 
 });
 
-
-
- 
 // function below builds URL to retrieve recipe data
-
-function fetchCuisineRecipe() {
+function fetchCuisineRecipeSpoonacular() {
   // query variable obtains user input
   var query= $("#ingredient_1")
     .val()
@@ -63,7 +54,6 @@ function fetchCuisineRecipe() {
       var newImg = $("<img>")
       .attr("src", imgLink);
       
-
       // each li,h3,and img tag becomes appended to a ul tag where a slider class is used 
       newImg.appendTo(newDisplay);
       // button is attached to images using caption class
@@ -92,11 +82,69 @@ function fetchCuisineRecipe() {
 
     });
 
-
   });
 
 };
 
+// function below used to get edamam data
+
+function fetchRecipeIngredientsEdamam() {
+  var userInput = $("#ingredient_1")
+    .val()
+    .toLowerCase()
+    .trim();
+  
+  var edamamID = "c8081a18";
+
+  var edamamKey = "b4b2bbb0a27fcae4c6fc433f0d4af07f";
+
+  var edamamUrl = "https://api.edamam.com/search?q=" + userInput + "&app_id=" + edamamID + "&app_key=" + edamamKey;
+  console.log(edamamUrl);
+  
+  $.ajax({
+    url: edamamUrl,
+    method: "GET",
+  }).then(function(data) {
+    console.log(data);
+
+    var newDiv = $(".box");
+
+    newDiv.text(title);
+
+    for (var i = 0; i < data.hits.length; i++) {
+      var title = data.hits[i].recipe.label;
+      var newDisplay = $("<li>");
+      var newTitle = $("<h3>")
+        .addClass("caption center-align")
+        .addClass("orange-text accent-3");
+      newTitle.text(title);
+      newTitle.appendTo(newDisplay);
+
+      newDisplay.appendTo(newDiv);
+      var imgLink = data.hits[i].recipe.image;
+      var newImg = $("<img>").attr("src", imgLink);
+
+      newImg.appendTo(newDisplay);
+
+      var idLink = $("<button>")
+      .addClass("btn-small")
+      .addClass("caption bottom")
+      .text("Click Me For Recipe!");
+      idLink.attr("url", data.hits[i].recipe.url)
+      idLink.appendTo(newDisplay);
+
+    };
+    $('.slider').slider();
+
+    // Event listener for button located on image which redirects to a new page 
+    $("button").on("click", function(){
+      var sourceUrl = $(this).attr("url");
+      window.open(sourceUrl, "_blank");
+
+    });
+
+  });
+};
 
 // Event listener on submit button 
 $("#submitRequest").on("click",function(event){
@@ -105,23 +153,20 @@ $("#submitRequest").on("click",function(event){
   $(".box").empty();
   
   var ingredientInput= $("#ingredient_1").val();
-  console.log(ingredientInput);
-  console.log(cuisine);
   
   if(ingredientInput === "" && cuisine ===""){
     
     alert("input has been left blank!")
-    
     return;
   }else{
     $("section").fadeIn(1000);
-    fetchCuisineRecipe();
+    // fetchCuisineRecipeSpoonacular();
+    fetchRecipeIngredientsEdamam();
+
   }
-  
-  
-  
 
 });
+
 
 
 
