@@ -35,8 +35,9 @@ function fetchCuisineRecipeSpoonacular() {
     url: spoonacularUrl,
     method: "GET",
   }).then(function (data) {
-    console.log(data);
-    var newDiv = $(".box");
+    
+    var newDiv = $(".box").empty();
+    $(".indicators").remove();
 
     newDiv.text(title);
 
@@ -108,7 +109,8 @@ function fetchRecipeIngredientsEdamam() {
   }).then(function(data) {
     console.log(data);
 
-    var newDiv = $(".box");
+    var newDiv = $(".box").empty();
+    $(".indicators").remove();
 
     newDiv.text(title);
 
@@ -136,6 +138,7 @@ function fetchRecipeIngredientsEdamam() {
       idLink.appendTo(newDisplay);
 
     };
+    
     $('.slider').slider();
 
     // Event listener for button located on image which redirects to a new page 
