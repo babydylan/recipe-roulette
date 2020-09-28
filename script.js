@@ -158,7 +158,7 @@ $("#submitRequest").on("click",function(event){
   
   if(ingredientInput === "" && cuisine ===""){
     
-    alert("input has been left blank!")
+    
     return;
   }else if(cuisine === $("#blank").text()){ 
     console.log($("#blank").text());
